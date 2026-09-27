@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafio Diário</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(145deg,#090909,#21101a);
+  color:#fff;
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.app{
+  width:100%;
+  max-width:390px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.points{
+  background:#252525;
+  padding:8px 13px;
+  border-radius:20px;
+  font-size:14px;
+}
+
+.card{
+  background:#191919;
+  border:1px solid #333;
+  border-radius:24px;
+  padding:25px 20px;
+  text-align:center;
+  box-shadow:0 15px 45px #0008;
+}
+
+.icon{
+  font-size:65px;
+  margin:8px 0 15px;
+}
+
+h1{
+  margin:0;
+  font-size:28px;
+}
+
+.subtitle{
+  color:#aaa;
+  line-height:1.5;
+  margin:12px 0 25px;
+}
+
+.progress{
+  height:8px;
+  background:#333;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:22px;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff0050,#00f2ea);
+  transition:.3s;
+}
+
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:14px;
+  background:#ff0050;
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+.info{
+  margin-top:18px;
+  color:#777;
+  font-size:12px;
+  line-height:1.5;
+}
+
+#final{
+  display:none;
+}
+
+.check{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.small{
+  color:#aaa;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="top">
+    <div class="logo">🎁 Desafio Diário</div>
+    <div class="points">⭐ Participação</div>
+  </div>
+
+  <div class="card" id="inicio">
+
+    <div class="icon">🎁</div>
+
+    <h1>Desbloqueie sua participação</h1>
+
+    <p class="subtitle">
+      Faça um pequeno desafio para continuar.
+    </p>
+
+    <div class="progress">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <button id="btn" onclick="tocar()">
+      👆 TOQUE AQUI
+    </button>
+
+    <div class="info">
+      Você será informado antes de ser encaminhado
+      para a campanha externa.
+    </div>
+
+  </div>
+
+  <div class="card" id="final">
+
+    <div class="check">🎉</div>
+
+    <h1>Pronto!</h1>
+
+    <p class="subtitle">
+      Sua participação está pronta para continuar.
+    </p>
+
+    <button onclick="abrirTikTok()">
+      🚀 CONTINUAR
+    </button>
+
+    <p class="small">
+      Ao continuar, você será encaminhado para o
+      TikTok Lite através de um link de convite.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+const link =
+"https://www.tiktok.com/d/4/ZS9Av7SCLcrbE-K5WIm/";
+
+let toques = 0;
+
+function tocar(){
+
+  toques++;
+
+  document.getElementById("bar").style.width =
+    (toques / 3 * 100) + "%";
+
+  if(toques === 1){
+    document.getElementById("btn").innerText =
+      "🔥 MAIS 2 TOQUES";
+  }
+
+  if(toques === 2){
+    document.getElementById("btn").innerText =
+      "✨ MAIS 1 TOQUE";
+  }
+
+  if(toques >= 3){
+
+    document.getElementById("inicio").style.display="none";
+    document.getElementById("final").style.display="block";
+
+  }
+}
+
+function abrirTikTok(){
+
+  window.location.href = link;
+
+}
+
+</script>
+
+</body>
+</html>
